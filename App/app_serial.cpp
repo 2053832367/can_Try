@@ -17,9 +17,9 @@ void Serial3_Hook(bool mode)
     Serial_Cmd.Hook(SERIAL3, mode);
 }
 
-void Serial4_Hook(bool mode)
+void Serial5_Hook(bool mode)
 {
-    Serial_Cmd.Hook(SERIAL4, mode);
+    Serial_Cmd.Hook(SERIAL5, mode);
 }
 
 void Serial7_Hook(bool mode)
@@ -27,35 +27,36 @@ void Serial7_Hook(bool mode)
     Serial_Cmd.Hook(SERIAL7, mode);
 }
 
-void Serial8_Hook(bool mode)
+void Serial10_Hook(bool mode)
 {
-    Serial_Cmd.Hook(SERIAL8, mode);
+    Serial_Cmd.Hook(SERIAL10, mode);
 }
 
 void Serial_ALL_Init(void)
 {
-#if ( Serial1_Mode == Serial_NORMAL_Mode )
-    HAL_UART_Receive_IT(&huart1,&Serial1_Ctrl.receive_RXNE,1);   // 重新使能接收中断
-		__HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);  //idle interrupt
-#endif
-#if ( Serial1_Mode == Serial_DMA_Mode )
-    MA_UART_Receive_DMA_Init(&huart1, &hdma_usart1_rx, (uint8_t *)&(Serial_Cmd.Serial1.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial1.Data[1][1]), Serial1_Buffer_Size);
-#endif
-	
+    //达妙板子需要更改串口
 #if ( Serial3_Mode == Serial_NORMAL_Mode )
-		HAL_UART_Receive_IT(&huart3,&Serial3_Ctrl.receive_RXNE,1);   // 重新使能接收中断
-    __HAL_UART_ENABLE_IT(&huart3, UART_IT_IDLE);  //idle interrupt
+    HAL_UART_Receive_IT(&huart3,&Serial3_Ctrl.receive_RXNE,1);   // 重新使能接收中断
+		__HAL_UART_ENABLE_IT(&huart3, UART_IT_IDLE);  //idle interrupt
 #endif
 #if ( Serial3_Mode == Serial_DMA_Mode )
     MA_UART_Receive_DMA_Init(&huart3, &hdma_usart3_rx, (uint8_t *)&(Serial_Cmd.Serial3.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial3.Data[1][1]), Serial3_Buffer_Size);
 #endif
 	
-#if ( Serial4_Mode == Serial_NORMAL_Mode )
-		HAL_UART_Receive_IT(&huart4,&Serial4_Ctrl.receive_RXNE,1);   // 重新使能接收中断
-    __HAL_UART_ENABLE_IT(&huart4, UART_IT_IDLE);  //idle interrupt
+#if ( Serial10_Mode == Serial_NORMAL_Mode )
+		HAL_UART_Receive_IT(&huart10,&Serial10_Ctrl.receive_RXNE,1);   // 重新使能接收中断
+    __HAL_UART_ENABLE_IT(&huart10, UART_IT_IDLE);  //idle interrupt
 #endif
-#if ( Serial4_Mode == Serial_DMA_Mode )
-    MA_UART_Receive_DMA_Init(&huart4, &hdma_uart4_rx, (uint8_t *)&(Serial_Cmd.Serial4.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial4.Data[1][1]), Serial4_Buffer_Size);
+#if ( Serial10_Mode == Serial_DMA_Mode )
+    MA_UART_Receive_DMA_Init(&huart10, &hdma_usart10_rx, (uint8_t *)&(Serial_Cmd.Serial10.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial10.Data[1][1]), Serial10_Buffer_Size);
+#endif
+	
+#if ( Serial5_Mode == Serial_NORMAL_Mode )
+		HAL_UART_Receive_IT(&huart5,&Serial5_Ctrl.receive_RXNE,1);   // 重新使能接收中断
+    __HAL_UART_ENABLE_IT(&huart5, UART_IT_IDLE);  //idle interrupt
+#endif
+#if ( Serial5_Mode == Serial_DMA_Mode )
+    MA_UART_Receive_DMA_Init(&huart5, &hdma_uart5_rx, (uint8_t *)&(Serial_Cmd.Serial5.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial5.Data[1][1]), Serial5_Buffer_Size);
 #endif
 
 #if ( Serial7_Mode == Serial_NORMAL_Mode )
@@ -66,42 +67,42 @@ void Serial_ALL_Init(void)
     MA_UART_Receive_DMA_Init(&huart7, &hdma_uart7_rx, (uint8_t *)&(Serial_Cmd.Serial7.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial7.Data[1][1]), Serial7_Buffer_Size);
 #endif
 
-#if ( Serial8_Mode == Serial_NORMAL_Mode )
-		HAL_UART_Receive_IT(&huart8,&Serial8_Ctrl.receive_RXNE,1);   // 重新使能接收中断
-    __HAL_UART_ENABLE_IT(&huart8, UART_IT_IDLE);  //idle interrupt
+#if ( Serial1_Mode == Serial_NORMAL_Mode )
+		HAL_UART_Receive_IT(&huart1,&Serial1_Ctrl.receive_RXNE,1);   // 重新使能接收中断
+    __HAL_UART_ENABLE_IT(&huart1, UART_IT_IDLE);  //idle interrupt
 #endif
-#if ( Serial8_Mode == Serial_DMA_Mode )
-    MA_UART_Receive_DMA_Init(&huart8, &hdma_uart8_rx, (uint8_t *)&(Serial_Cmd.Serial8.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial8.Data[1][1]), Serial8_Buffer_Size);
+#if ( Serial1_Mode == Serial_DMA_Mode )
+    MA_UART_Receive_DMA_Init(&huart1, &hdma_uart1_rx, (uint8_t *)&(Serial_Cmd.Serial1.Data[0][1]), (uint8_t *)&(Serial_Cmd.Serial1.Data[1][1]), Serial1_Buffer_Size);
 #endif
 	
-    Serial1_Ctrl.attachInterrupt(Serial1_Hook);
-    Serial3_Ctrl.attachInterrupt(Serial3_Hook);
-    Serial4_Ctrl.attachInterrupt(Serial4_Hook);
+     Serial3_Ctrl.attachInterrupt(Serial3_Hook);
+    Serial10_Ctrl.attachInterrupt(Serial10_Hook);
+    Serial5_Ctrl.attachInterrupt(Serial5_Hook);
     Serial7_Ctrl.attachInterrupt(Serial7_Hook);
-		Serial8_Ctrl.attachInterrupt(Serial8_Hook);
+		Serial1_Ctrl.attachInterrupt(Serial1_Hook);
 }
 
 void Serial_Ctrl::Hook(USART_TypeDef *SERIAL, bool mode)
-{
-    if (SERIAL == SERIAL1)
-    {
-        Handle(&Serial1_Ctrl, &Serial1, mode);
-    }
+{//达妙板子需要更改串口
     if (SERIAL == SERIAL3)
     {
         Handle(&Serial3_Ctrl, &Serial3, mode);
     }
-    if (SERIAL == SERIAL4)
+    if (SERIAL == SERIAL10)
     {
-        Handle(&Serial4_Ctrl, &Serial4, mode);
+        Handle(&Serial10_Ctrl, &Serial10, mode);
+    }
+    if (SERIAL == SERIAL5)
+    {
+        Handle(&Serial5_Ctrl, &Serial5, mode);
     }
     if (SERIAL == SERIAL7)
     {
         Handle(&Serial7_Ctrl, &Serial7, mode);
     }
-		if (SERIAL == SERIAL8)
+		if (SERIAL == SERIAL1)
     {
-        Handle(&Serial8_Ctrl, &Serial8, mode);
+        Handle(&Serial1_Ctrl, &Serial1, mode);
     }
 }
 
@@ -290,30 +291,30 @@ uint8_t Serial_Ctrl::Get_Data(Serial_Data_t *Serial, uint8_t *buf)
 void Serial_Ctrl::Send_to_Message(Serialctrl *SerialCtrl, bool Memory)
 {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    if (SerialCtrl == &Serial1_Ctrl)
-    {
-        ID_Data[SerialData1].Data_Ptr = Serial1.Data[Memory];
-        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData1], &xHigherPriorityTaskWoken);
-    }
     if (SerialCtrl == &Serial3_Ctrl)
     {
         ID_Data[SerialData3].Data_Ptr = Serial3.Data[Memory];
         xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData3], &xHigherPriorityTaskWoken);
     }
-    if (SerialCtrl == &Serial4_Ctrl)
+    if (SerialCtrl == &Serial10_Ctrl)
     {
-        ID_Data[SerialData4].Data_Ptr = Serial4.Data[Memory];
-        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData4], &xHigherPriorityTaskWoken);
+        ID_Data[SerialData10].Data_Ptr = Serial10.Data[Memory];
+        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData10], &xHigherPriorityTaskWoken);
+    }
+    if (SerialCtrl == &Serial5_Ctrl)
+    {
+        ID_Data[SerialData5].Data_Ptr = Serial5.Data[Memory];
+        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData5], &xHigherPriorityTaskWoken);
     }
     if (SerialCtrl == &Serial7_Ctrl)
     {
         ID_Data[SerialData7].Data_Ptr = Serial7.Data[Memory];
         xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData7], &xHigherPriorityTaskWoken);
     }
-		if (SerialCtrl == &Serial8_Ctrl)
+		if (SerialCtrl == &Serial1_Ctrl)
     {
-        ID_Data[SerialData8].Data_Ptr = Serial8.Data[Memory];
-        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData8], &xHigherPriorityTaskWoken);
+        ID_Data[SerialData1].Data_Ptr = Serial1.Data[Memory];
+        xQueueSendFromISR(Serial_Rx_Queue, &ID_Data[SerialData1], &xHigherPriorityTaskWoken);
     }
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }

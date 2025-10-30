@@ -46,7 +46,7 @@ void Correspond_Task(void *argument)
   set_bo[3]= Gimbal.DM_Yaw.feedforward;
   set_bo[4]= Gimbal.DM_Yaw.SpeedPid.out;
  */
-    vofa_justfloat_output(set_bo,2,&Serial3_Ctrl);
+    vofa_justfloat_output(set_bo,2,&Serial10_Ctrl);
 		
 		
 		Corres.Corres_Feedback();

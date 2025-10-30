@@ -21,6 +21,7 @@
 #include "cmsis_os.h"
 #include "dma.h"
 #include "fdcan.h"
+#include "memorymap.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -108,8 +109,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_USART1_UART_Init();
-  MX_UART4_Init();
   MX_TIM2_Init();
   MX_FDCAN1_Init();
   MX_FDCAN2_Init();
@@ -117,8 +116,12 @@ int main(void)
   MX_TIM3_Init();
   MX_UART7_Init();
   MX_UART8_Init();
-  MX_USART3_UART_Init();
   MX_TIM4_Init();
+  MX_USART10_UART_Init();
+  MX_UART5_Init();
+  MX_USART1_UART_Init();
+  MX_USART3_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   //SoftWareInit();
 	DWT_Init(550);

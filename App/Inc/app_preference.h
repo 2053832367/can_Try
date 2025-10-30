@@ -18,7 +18,7 @@
 
 //发送 格式 Serialx_Ctrl （x用3，6，7，8代替），串口不能重复！
 //SerialDatax 用于判断外设是否在线
-#define VISUAL_SERIAL      Serial8_Ctrl
+#define VISUAL_SERIAL      Serial1_Ctrl
 //#define VisualData         SerialData1
 #define VISUAL_SERIAL_BAUD 115200
 
@@ -35,7 +35,7 @@
 #define NAV_SERIAL_Data_Lenth2 	16
 #define NAV_SERIAL_Data_Lenth3 	16
 
-#define DR16_SERIAL 		       Serial4_Ctrl
+#define DR16_SERIAL 		       Serial5_Ctrl
 #define DbusData				 			 SerialData4
 #define DR16_SERIAL_Data_Lenth 18
 #define DR16_SERIAL_BAUD 			 100000
@@ -54,35 +54,77 @@
 #define Serial_DMA_Mode    1
 
 
+// #define Serial1_Data_Header 0xA5
+// #define Serial1_Data_Tail   NULL
+// #define Serial1_Data_Lenth0 NULL
+// #define Serial1_Data_Lenth1 NULL
+// #define Serial1_Data_Lenth2 NULL
+// #define Serial1_Data_Lenth3 NULL
+// #define Serial1_Buffer_Size 80
+// #define Serial1_ITPending   USART_IT_RXNE_AND_IDLE
+// #define Serial1_Mode        Serial_NORMAL_Mode
+
+// #define Serial3_Data_Header 0x5A
+// #define Serial3_Data_Tail 	NULL
+// #define Serial3_Data_Lenth0 15
+// #define Serial3_Data_Lenth1 NAV_SERIAL_Data_Lenth2
+// #define Serial3_Data_Lenth2 NAV_SERIAL_Data_Lenth3
+// #define Serial3_Data_Lenth3 NULL
+// #define Serial3_Buffer_Size 32
+// #define Serial3_ITPending   USART_IT_RXNE_AND_IDLE
+// #define Serial3_Mode        Serial_NORMAL_Mode
+
+// #define Serial4_Data_Header NULL
+// #define Serial4_Data_Tail   NULL
+// #define Serial4_Data_Lenth0 DR16_SERIAL_Data_Lenth
+// #define Serial4_Data_Lenth1 NULL
+// #define Serial4_Data_Lenth2 NULL
+// #define Serial4_Data_Lenth3 NULL
+// #define Serial4_Buffer_Size 38
+// #define Serial4_ITPending USART_IT_IDLE
+// #define Serial4_Mode Serial_NORMAL_Mode
+
+// #define Serial8_Data_Header 0xA5
+// #define Serial8_Data_Tail 	NULL
+// #define Serial8_Data_Lenth0 32
+// #define Serial8_Data_Lenth1 64
+// #define Serial8_Data_Lenth2 128
+// #define Serial8_Data_Lenth3 NULL
+// #define Serial8_Buffer_Size 32
+// #define Serial8_ITPending   USART_IT_RXNE_AND_IDLE
+// #define Serial8_Mode        Serial_NORMAL_Mode
+
 #define Serial1_Data_Header 0xA5
-#define Serial1_Data_Tail   NULL
-#define Serial1_Data_Lenth0 NULL
-#define Serial1_Data_Lenth1 NULL
-#define Serial1_Data_Lenth2 NULL
+#define Serial1_Data_Tail 	NULL
+#define Serial1_Data_Lenth0 32
+#define Serial1_Data_Lenth1 64
+#define Serial1_Data_Lenth2 128
 #define Serial1_Data_Lenth3 NULL
-#define Serial1_Buffer_Size 80
+#define Serial1_Buffer_Size 32
 #define Serial1_ITPending   USART_IT_RXNE_AND_IDLE
 #define Serial1_Mode        Serial_NORMAL_Mode
 
-#define Serial3_Data_Header 0x5A
-#define Serial3_Data_Tail 	NULL
-#define Serial3_Data_Lenth0 15
-#define Serial3_Data_Lenth1 NAV_SERIAL_Data_Lenth2
-#define Serial3_Data_Lenth2 NAV_SERIAL_Data_Lenth3
+#define Serial3_Data_Header 0xA5
+#define Serial3_Data_Tail   NULL
+#define Serial3_Data_Lenth0 NULL
+#define Serial3_Data_Lenth1 NULL
+#define Serial3_Data_Lenth2 NULL
 #define Serial3_Data_Lenth3 NULL
-#define Serial3_Buffer_Size 32
+#define Serial3_Buffer_Size 80
 #define Serial3_ITPending   USART_IT_RXNE_AND_IDLE
 #define Serial3_Mode        Serial_NORMAL_Mode
 
-#define Serial4_Data_Header NULL
-#define Serial4_Data_Tail   NULL
-#define Serial4_Data_Lenth0 DR16_SERIAL_Data_Lenth
-#define Serial4_Data_Lenth1 NULL
-#define Serial4_Data_Lenth2 NULL
-#define Serial4_Data_Lenth3 NULL
-#define Serial4_Buffer_Size 38
-#define Serial4_ITPending USART_IT_IDLE
-#define Serial4_Mode Serial_NORMAL_Mode
+
+
+#define Serial5_Data_Header NULL
+#define Serial5_Data_Tail   NULL
+#define Serial5_Data_Lenth0 DR16_SERIAL_Data_Lenth
+#define Serial5_Data_Lenth1 NULL
+#define Serial5_Data_Lenth2 NULL
+#define Serial5_Data_Lenth3 NULL
+#define Serial5_Buffer_Size 38
+#define Serial5_ITPending USART_IT_IDLE
+#define Serial5_Mode Serial_NORMAL_Mode
 
 #define Serial7_Data_Header 0xA5
 #define Serial7_Data_Tail   NULL
@@ -94,15 +136,18 @@
 #define Serial7_ITPending   USART_IT_RXNE_AND_IDLE
 #define Serial7_Mode        Serial_NORMAL_Mode
 
-#define Serial8_Data_Header 0xA5
-#define Serial8_Data_Tail 	NULL
-#define Serial8_Data_Lenth0 32
-#define Serial8_Data_Lenth1 64
-#define Serial8_Data_Lenth2 128
-#define Serial8_Data_Lenth3 NULL
-#define Serial8_Buffer_Size 32
-#define Serial8_ITPending   USART_IT_RXNE_AND_IDLE
-#define Serial8_Mode        Serial_NORMAL_Mode
+#define Serial10_Data_Header 0x5A
+#define Serial10_Data_Tail 	NULL
+#define Serial10_Data_Lenth0 15
+#define Serial10_Data_Lenth1 NAV_SERIAL_Data_Lenth2
+#define Serial10_Data_Lenth2 NAV_SERIAL_Data_Lenth3
+#define Serial10_Data_Lenth3 NULL
+#define Serial10_Buffer_Size 32
+#define Serial10_ITPending   USART_IT_RXNE_AND_IDLE
+#define Serial10_Mode        Serial_NORMAL_Mode
+
+
+
 
 #define FDCAN1_Buffer_Size 50
 #define FDCAN2_Buffer_Size 50
@@ -578,11 +623,11 @@ typedef enum
 	CanData1,
 	CanData2,
 	CanData3,
-	SerialData1,
 	SerialData3,
-	SerialData4,
+	SerialData10,
+	SerialData5,
 	SerialData7,
-	SerialData8,
+	SerialData1,
 	RCData,
 	RefereeData,
 	GyroData,

@@ -50,27 +50,49 @@ private:
   RingBuffer _rx_buffer;
 };
 
-extern Serialctrl Serial1_Ctrl;
 extern Serialctrl Serial3_Ctrl;
-extern Serialctrl Serial4_Ctrl;
+extern Serialctrl Serial10_Ctrl;
+extern Serialctrl Serial5_Ctrl;
 extern Serialctrl Serial7_Ctrl;
-extern Serialctrl Serial8_Ctrl;
+extern Serialctrl Serial1_Ctrl;
 
-extern UART_HandleTypeDef huart4;
-extern UART_HandleTypeDef huart7;
-extern UART_HandleTypeDef huart8;
-extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart3;
+//extern UART_HandleTypeDef huart4;
+//extern UART_HandleTypeDef huart7;
+//extern UART_HandleTypeDef huart8;
+//extern UART_HandleTypeDef huart1;
+//extern UART_HandleTypeDef huart3;
 
-extern DMA_HandleTypeDef hdma_uart4_rx;
-extern DMA_HandleTypeDef hdma_uart4_tx;
-extern DMA_HandleTypeDef hdma_uart7_rx;
-extern DMA_HandleTypeDef hdma_uart7_tx;
-extern DMA_HandleTypeDef hdma_uart8_rx;
-extern DMA_HandleTypeDef hdma_uart8_tx;
-extern DMA_HandleTypeDef hdma_usart1_rx;
-extern DMA_HandleTypeDef hdma_usart1_tx;
-extern DMA_HandleTypeDef hdma_usart3_rx;
-extern DMA_HandleTypeDef hdma_usart3_tx;
+//extern DMA_HandleTypeDef hdma_uart4_rx;
+//extern DMA_HandleTypeDef hdma_uart4_tx;
+//extern DMA_HandleTypeDef hdma_uart7_rx;
+//extern DMA_HandleTypeDef hdma_uart7_tx;
+//extern DMA_HandleTypeDef hdma_uart8_rx;
+//extern DMA_HandleTypeDef hdma_uart8_tx;
+//extern DMA_HandleTypeDef hdma_usart1_rx;
+//extern DMA_HandleTypeDef hdma_usart1_tx;
+//extern DMA_HandleTypeDef hdma_usart3_rx;
+//extern DMA_HandleTypeDef hdma_usart3_tx;
+
+
+
+extern	UART_HandleTypeDef huart5;
+extern	UART_HandleTypeDef huart7;
+//extern	UART_HandleTypeDef huart8;
+extern	UART_HandleTypeDef huart1;
+extern	UART_HandleTypeDef huart2;
+extern	UART_HandleTypeDef huart3;
+extern	UART_HandleTypeDef huart10;
+extern	DMA_HandleTypeDef hdma_uart5_rx;
+extern	DMA_HandleTypeDef hdma_uart5_tx;
+extern	DMA_HandleTypeDef hdma_uart7_rx;
+extern	DMA_HandleTypeDef hdma_uart7_tx;
+//extern	DMA_HandleTypeDef hdma_uart8_rx;
+//extern	DMA_HandleTypeDef hdma_uart8_tx;
+extern	DMA_HandleTypeDef hdma_usart1_rx;
+extern	DMA_HandleTypeDef hdma_usart1_tx;
+extern	DMA_HandleTypeDef hdma_usart3_rx;
+extern	DMA_HandleTypeDef hdma_usart3_tx;
+extern	DMA_HandleTypeDef hdma_usart10_rx;
+extern	DMA_HandleTypeDef hdma_usart10_tx;
 
 #endif /* _DEV_SERIAL */

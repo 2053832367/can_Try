@@ -105,13 +105,13 @@ void slove_data_error(void)
 }
 void RC_restart(uint16_t dma_buf_num)
 {
-    __HAL_UART_DISABLE(&huart4);
-    __HAL_DMA_DISABLE(&hdma_uart4_rx);
+    __HAL_UART_DISABLE(&huart5);
+    __HAL_DMA_DISABLE(&hdma_uart5_rx);
 
-   ((DMA_Stream_TypeDef*)hdma_uart4_rx.Instance)->NDTR = dma_buf_num;
+   ((DMA_Stream_TypeDef*)hdma_uart5_rx.Instance)->NDTR = dma_buf_num;
 
-    __HAL_DMA_ENABLE(&hdma_uart4_rx);
-    __HAL_UART_ENABLE(&huart4);
+    __HAL_DMA_ENABLE(&hdma_uart5_rx);
+    __HAL_UART_ENABLE(&huart5);
 
 }
 

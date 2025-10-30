@@ -86,20 +86,20 @@ void Serial_Rx_Task(void *pvParameters)
 		{
 			switch(Serial_Rx_Data.Data_ID)
 			{
-			case SerialData1:
-			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial1_Ctrl);
-			break;
 			case SerialData3:
 			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial3_Ctrl);
 			break;
-			case SerialData4:
-			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial4_Ctrl);
+			case SerialData10:
+			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial10_Ctrl);
+			break;
+			case SerialData5:
+			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial5_Ctrl);
 			break;
 			case SerialData7:
 			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial7_Ctrl);
 			break;
-			case SerialData8:
-			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial8_Ctrl);
+			case SerialData1:
+			Message.Serialx_Hook((uint8_t *)Serial_Rx_Data.Data_Ptr, &Serial1_Ctrl);
 			break;
 			default:
 			break;
