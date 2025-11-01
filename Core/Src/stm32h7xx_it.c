@@ -382,7 +382,10 @@ void UART5_IRQHandler(void)
   /* USER CODE END UART5_IRQn 0 */
   HAL_UART_IRQHandler(&huart5);
   /* USER CODE BEGIN UART5_IRQn 1 */
-
+	if((((huart5.Instance->ISR) & USART_ISR_IDLE) != 0U) && ((huart5.Instance->CR1 & USART_CR1_IDLEIE) != 0U))
+	{	
+	HAL_UART_IdleCpltCallback(&huart5);
+	}
   /* USER CODE END UART5_IRQn 1 */
 }
 
@@ -502,7 +505,10 @@ void USART10_IRQHandler(void)
   /* USER CODE END USART10_IRQn 0 */
   HAL_UART_IRQHandler(&huart10);
   /* USER CODE BEGIN USART10_IRQn 1 */
-
+	if((((huart10.Instance->ISR) & USART_ISR_IDLE) != 0U) && ((huart10.Instance->CR1 & USART_CR1_IDLEIE) != 0U))
+	{	
+	HAL_UART_IdleCpltCallback(&huart10);
+	}
   /* USER CODE END USART10_IRQn 1 */
 }
 

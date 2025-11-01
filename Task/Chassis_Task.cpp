@@ -42,6 +42,7 @@ void Chassis_Task(void *argument)
 			
 			CAN_Cmd.SendData(&CAN_Cmd.Chassis, Chassis.Motor[0].give_current, Chassis.Motor[1].give_current, Chassis.Motor[2].give_current, Chassis.Motor[3].give_current);
 			CAN_Cmd.DM_MIT_SendData(&CAN_Cmd.Gimbal_DM_Yaw,0,0,0,0,Gimbal.DM_Yaw.tor_set);
+			//调试时单独启用记得关闭
 #ifdef useSteering
 			CAN_Cmd.SendData(&CAN_Cmd.Steer, Chassis.Steering[0].give_current, Chassis.Steering[1].give_current,
 			Chassis.Steering[2].give_current, Chassis.Steering[3].give_current);
@@ -350,7 +351,7 @@ void Chassis_Ctrl::Behaviour_Mode(void)
 		top_speedww -=0.01;
 	}
 	if (top_speedww >0.9) top_speedww =0.9;
-	if (top_speedww < 0.3) top_speedww =0.3;
+	if (top_speedww < 0.05) top_speedww =0.05;
 
 
 	Mode=CHASSIS_LITTLE_TOP_HIGH;

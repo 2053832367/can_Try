@@ -300,6 +300,7 @@ void Message_Ctrl::CAN2_Process(CanRxMsg *Rx_Message)
 			MA_get_motor_measure(CAN_Cmd.Chassis.GetData(i), Rx_Data.Data);
 			break;
 		}
+
 		//case CAN_DJI_Motor5_ID:
 		case CAN_DJI_Motor7_ID://yaw和拨弹盘
 		{
@@ -373,7 +374,16 @@ void Message_Ctrl::CAN3_Process(CanRxMsg *Rx_Message)
 	
 	switch(Rx_Data.StdId.u32)
 	{
-
+						/*调试临时启用*/
+		case CAN_DJI_Motor5_ID:
+				{
+			static uint8_t i = 0;
+			//处理电机ID号
+			i = Rx_Data.StdId.u32 - CAN_DJI_Motor5_ID;
+			//处理电机数据宏函数
+			MA_get_motor_measure(CAN_Cmd.Chassis.GetData(i), Rx_Data.Data);
+			break;
+		}
 //		 case CAN_MPU_TO_Z:    
 //        {
 //            CAN_MPU_R_Z.AngleZ = ((int16_t)((Rx_Data.Data[0])<< 8|(Rx_Data.Data[1])))*FP32_MPU_RAD;

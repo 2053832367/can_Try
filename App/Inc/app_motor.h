@@ -270,7 +270,7 @@ class CAN_Ctrl
 public:
 	CAN_Ctrl()
 		:Gimbal (&hfdcan1, CAN_DJI_Motor_Group1_ID, 4),//yaw,c610
-		 Chassis(&hfdcan2, CAN_DJI_Motor_Group2_ID, 4),//麦轮*hfdcan2 
+		 Chassis(&hfdcan3, CAN_DJI_Motor_Group1_ID, 4),//麦轮*hfdcan2 ,临时调试改成了1，记得改成2
 		 //Bottom (&hfdcan2, CAN_DJI_Motor_Group1_ID, 3),//yaw,super,拨弹盘hfdcan2
 		#ifdef useHero
 	 	 Fric  (&hfdcan1,   CAN_DJI_Motor_Group2_ID,3),//摩擦轮*3
